@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DayPic from "./DayPic";
 import Button from "../../Button/Button";
 import { formatDistance } from "date-fns";
@@ -9,11 +9,11 @@ const totalDays = parseInt(formatDistance(new Date(room.to), new Date(room.from)
 const totalPrice = totalDays * room?.price ;
 
 // TODO:
-// const [value,setValue] = useState({
-//     startDate : new Date(room?.from),
-//     endDate : new Date(room?.to),
-//     key : 'selection'
-// })
+const [value,setValue] = useState({
+    startDate : new Date(room?.from),
+    endDate : new Date(room?.to),
+    key : 'selection'
+})
 
   return (
     <div className="rounded-xl border-[1px] border-neutral-200 overflow-hidden bg-white">
@@ -23,7 +23,7 @@ const totalPrice = totalDays * room?.price ;
       </div>
       <hr />
       <div className="flex justify-center">
-        <DayPic></DayPic>
+        <DayPic value={value}></DayPic>
       </div>
       <hr />
       <div className="p-4">

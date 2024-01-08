@@ -1,4 +1,4 @@
-import { axiosSecure } from "./axiosSecure";
+import axiosSecure from "./axiosSecure";
 
 export const saveUser = async (user) => {
     const currentUser = { email : user?.email, role : 'guest', status : 'verified'};
@@ -9,6 +9,11 @@ export const saveUser = async (user) => {
 
 export const getToken = async (email) => {
     const {data} = await axiosSecure.post('/jwt', email);
-    console.log('token----',data);
+    return data;
+}
+
+
+export const clearCookie = async () => {
+    const {data} = await axiosSecure.get('/logout');
     return data;
 }

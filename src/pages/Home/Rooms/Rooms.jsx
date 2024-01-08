@@ -6,6 +6,7 @@ import RoomCard from "./RoomCard";
 import { useSearchParams } from "react-router-dom";
 import Heading from "./Heading";
 import Loader from "../../../components/Shared/Loader";
+import { getAllRoom } from "../../../api/rooms";
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
@@ -15,8 +16,7 @@ const Rooms = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("rooms.json")
-      .then((res) => res.json())
+    getAllRoom()
       .then((data) => {
         if (category) {
           const categoryRooms = data.filter(

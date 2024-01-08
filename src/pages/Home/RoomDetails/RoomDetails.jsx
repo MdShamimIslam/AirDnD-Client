@@ -1,31 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Container from "../../../components/Shared/Container";
-import Loader from "../../../components/Shared/Loader";
-import { useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "../../../components/Shared/Room_details/Header";
 import RoomInfo from "../../../components/Shared/Room_details/RoomInfo";
 import RoomReservation from "../../../components/Shared/Room_details/RoomReservation";
 
 const RoomDetails = () => {
-  const { id } = useParams();
-  const [room, setRoom] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch("/rooms.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const singleRoom = data.find((room) => room._id === id);
-        setRoom(singleRoom);
-        setLoading(false);
-      });
-  }, [id]);
-
-  if (loading) {
-    return <Loader></Loader>;
-  }
+ const room = useLoaderData();
 
   return (
     <Container>

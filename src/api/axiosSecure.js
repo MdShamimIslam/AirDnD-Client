@@ -7,7 +7,7 @@ import { clearCookie } from "./auth";
 })
 
 axiosSecure.interceptors.response.use(res => res, async error =>{
-    if(error.response.status === 401 || error.response.status === 403){
+    if(error.response?.status === 401 || error.response?.status === 403){
         await clearCookie();
         window.location.replace('/login');
     }

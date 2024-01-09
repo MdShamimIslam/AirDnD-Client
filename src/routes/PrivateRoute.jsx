@@ -4,7 +4,7 @@ import Loader from '../components/Shared/Loader';
 import { Navigate, useLocation } from 'react-router-dom';
 
 const PrivateRoute = ({children}) => {
-   const {user,loading} = useAuth;
+   const {user,loading} = useAuth();
    const location = useLocation();
 
    if(loading){
